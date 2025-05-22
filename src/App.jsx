@@ -4,6 +4,8 @@ import usePasswordGenerator from "./hooks/use-password-generator";
 import PasswordStrengthIndicator from "./components/strengthChecker";
 
 import { useState } from "react";
+import CheckBox from "./components/Checkbox";
+import Button from "./components/Button";
 
 export default function App() {
   const [length, setLength] = useState(4);
@@ -38,14 +40,11 @@ export default function App() {
       {password && (
         <div className="header">
           <div className="title">{password}</div>
-          <button
-            className="copyBtn"
-            onClick={() => {
-              handleCopy();
-            }}
-          >
-            {copied ? "Copied" : "copy"}
-          </button>
+          <Button
+            title={copied ? "Copied" : "copy"}
+            onclick={handleCopy}
+            customClass="copyBtn"
+          />
         </div>
       )}
       {/* character length */}
@@ -66,14 +65,12 @@ export default function App() {
       <div className="checkBoxes">
         {checkBoxData.map((checkbox, i) => {
           return (
-            <div key={i}>
-              <input
-                type="checkbox"
-                onChange={() => handleCheckBoxChange(i)}
-                checked={checkbox.state}
-              />
-              <label>{checkbox.title}</label>
-            </div>
+            <CheckBox
+              key={i}
+              title={checkbox.title}
+              onChange={() => handleCheckBoxChange(i)}
+              state={checkbox.state}
+            />
           );
         })}
       </div>
@@ -83,14 +80,12 @@ export default function App() {
       {errorMessage && <div className="err">{errorMessage}!</div>}
 
       {/* generate buttons  */}
-      <button
-        className="generateBtn"
-        onClick={() => {
-          generatePassword(checkBoxData, length);
-        }}
-      >
-        Generate Password
-      </button>
+
+      <Button
+        title="Generate Password"
+        onclick={() => generatePassword(checkBoxData, length)}
+        customClass="generateBtn"
+      />
     </div>
   );
 }
