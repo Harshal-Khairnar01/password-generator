@@ -1,4 +1,4 @@
-
+import { PASSWORD_MIN_LENGTH } from "../constants";
 import "../styles.css";
 
 const PasswordStrengthIndicator = ({ password = "" }) => {
@@ -6,10 +6,10 @@ const PasswordStrengthIndicator = ({ password = "" }) => {
     const passwordLen = password.length;
     if (passwordLen < 1) {
       return "";
-    } else if (passwordLen < 4) return "very weak";
-    else if (passwordLen < 8) return "Poor";
-    else if (passwordLen < 12) return "Medium";
-    else if (passwordLen < 16) return "Strong";
+    } else if (passwordLen < PASSWORD_MIN_LENGTH) return "very weak";
+    else if (passwordLen < PASSWORD_MIN_LENGTH * 2) return "Poor";
+    else if (passwordLen < PASSWORD_MIN_LENGTH * 4) return "Medium";
+    else if (passwordLen < PASSWORD_MIN_LENGTH * 5) return "Strong";
     else return "Very Strong";
   };
   const passwordStrength = getPasswordStrength();
