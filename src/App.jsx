@@ -41,7 +41,7 @@ export default function App() {
 
   const updateBackground = (value) => {
     const slider = document.getElementById("range-slider");
-   
+
     const percentage =
       ((value - PASSWORD_MIN_LENGTH) * 100) /
       (PASSWORD_MAX_LENGTH - PASSWORD_MIN_LENGTH);
@@ -63,6 +63,7 @@ export default function App() {
             />
           </div>
         )}
+        
         {/* character length */}
         <div className="charlen">
           <span>
